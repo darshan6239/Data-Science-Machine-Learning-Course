@@ -1,0 +1,10 @@
+import statistics
+
+# sample data
+arr = [1, 2, 3, 4, 5]
+# variance
+print("Var = ", (statistics.variance(arr)))
+
+
+Output 
+Var = 2.5

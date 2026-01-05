@@ -1,0 +1,15 @@
+import numpy as np
+import matplotlib.pyplot as plt
+a = 0  
+b = 25  
+samples = np.random.uniform(a, b, 1000)
+
+plt.hist(samples, bins=30, density=True, alpha=0.6, color='g')
+
+x = np.linspace(a, b, 1000)
+plt.plot(x, np.ones_like(x) / (b - a), 'r-', lw=2)
+
+plt.title('Uniform Distribution PDF')
+plt.xlabel('X')
+plt.ylabel('Probability Density')
+plt.show()

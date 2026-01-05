@@ -1,0 +1,28 @@
+import matplotlib.pyplot as plt
+import numpy as np
+from scipy.stats import poisson
+
+lambda_val = 3  
+k = np.arange(0, 10)  
+pmf = poisson.pmf(k, lambda_val)
+
+plt.figure(figsize=(8, 6))
+plt.bar(k, pmf, color='lightgreen', edgecolor='black')
+plt.title('Poisson Distribution PMF (λ=3)', fontsize=14)
+plt.xlabel('Number of events (k)', fontsize=12)
+plt.ylabel('Probability', fontsize=12)
+plt.grid(axis='y', linestyle='--', alpha=0.7)
+plt.show()
+
+cdf = poisson.cdf(k, lambda_val)
+
+plt.figure(figsize=(8, 6))
+plt.plot(k, cdf, color='purple', marker='o', linestyle='-', linewidth=2)
+plt.title('Poisson Distribution CDF (λ=3)', fontsize=14)
+plt.xlabel('Number of events (k)', fontsize=12)
+plt.ylabel('Cumulative Probability', fontsize=12)
+plt.grid(True)
+plt.show()
+
+probability_4_events = poisson.pmf(4, lambda_val)
+print(f'Probability of exactly 4 events: {probability_4_events:.4f}')

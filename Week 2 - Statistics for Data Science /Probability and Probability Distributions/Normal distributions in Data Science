@@ -1,0 +1,18 @@
+# Implementation of Normal Distribution in Python
+
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+mean = 10          
+std_dev = 2       
+size = 1000       
+
+data = np.random.normal(loc=mean, scale=std_dev, size=size)
+
+sns.histplot(data, kde=True, stat="density", bins=30, color="skyblue", linewidth=0.8)
+
+plt.title(f'Normal Distribution (μ={mean}, σ={std_dev})')
+plt.xlabel('Value')
+plt.ylabel('Density')
+plt.show()

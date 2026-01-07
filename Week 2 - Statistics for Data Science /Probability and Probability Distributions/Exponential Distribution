@@ -10,6 +10,7 @@ data = np.random.exponential(1/lam, 1000)
 
 # Plot the KDE and histogram
 sns.histplot(data, kde=True, stat="density")
+
 plt.title("Exponential Distribution (lambda=1.5)")
 plt.xlabel("Time")
 plt.ylabel("Density")

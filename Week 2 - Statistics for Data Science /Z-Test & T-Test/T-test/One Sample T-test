@@ -1,0 +1,30 @@
+import scipy.stats as stats
+import numpy as np
+
+popu_mean = 45
+s_mean = 75
+s_std = 25
+s_size = 25
+
+t_stat = (s_mean - popu_mean) / (s_std / np.sqrt(s_size))
+df = s_size - 1
+alpha = 0.05
+cr_t = stats.t.ppf(1 - alpha, df)
+
+p_v = 1 - stats.t.cdf(t_stat, df)
+
+print("T-Statistic:", t_stat)
+print("Critical t-value:", cr_t)
+print("P-Value:", p_v)
+
+print('With T-value :')
+if t_stat > cr_t:
+    print("Significant difference. Camp had effect.")
+else:
+    print("No significant difference. Camp had no effect.")
+
+print('With P-value :')
+if p_v >alpha:
+    print("Significant difference. Camp had effect.")
+else:
+    print("No significant difference. Camp had no effect.")

@@ -1,0 +1,31 @@
+Example: There are two groups of students preparing for a competition: Group A and Group B. Group A has studied offline classes, while Group B has studied online classes. After the examination the score of each student comes. Now we want to determine whether the online or offline classes are better.
+
+Group A: Sample size = 50, Sample mean = 75, Sample standard deviation = 10
+Group B: Sample size = 60, Sample mean = 80, Sample standard deviation = 12
+Assuming a 5% significance level perform a two-sample z-test to determine if there is a significant difference between the online and offline classes.
+
+
+import numpy as np
+import scipy.stats as stats
+
+n1 = 50
+x1 = 75
+s1 = 10
+
+n2 = 60
+x2 = 80
+s2 = 12
+
+D = 0
+alpha = 0.05
+
+z_score = ((x1 - x2) - D) / np.sqrt((s1**2 / n1) + (s2**2 / n2))
+print('Z-Score:', np.abs(z_score))
+
+z_critical = stats.norm.ppf(1 - alpha/2)
+print('Critical Z-Score:',z_critical)
+
+if np.abs(z_score) > z_critical:
+    print("Reject the null hypothesis.")
+else:
+    print("Fail to reject the null hypothesis.")

@@ -1,0 +1,34 @@
+A one-sample Z-test is used to determine if the mean of a single sample is significantly different from a known population mean. Use it when:
+
+The population standard deviation is known.
+The sample size is large (usually n>30).
+The data is approximately normally distributed.
+Suppose a company claims that their new smartphone has an average battery life of 12 hours. A consumer group tests 100 phones and finds an average battery life of 11.8 hours with a known population standard deviation of 0.5 hours.
+
+step 1 = Hypothesis 
+z = x-u/S.d/Root n
+
+where = x=11.8, u=12, S.D=0.2 and n=100
+after puttinng value we get :
+-4
+
+
+Now let's implement this in Python using the Statsmodels and Numpy Library:
+
+import numpy as np
+from statsmodels.stats.weightstats import ztest
+
+data = [11.8] * 100  
+population_mean = 12
+population_std_dev = 0.5
+
+z_statistic, p_value = ztest(data, value=population_mean)
+
+print(f"Z-Statistic: {z_statistic:.4f}")
+print(f"P-Value: {p_value:.4f}")
+
+alpha = 0.05
+if p_value < alpha:
+    print("Reject the null hypothesis: The average battery life is different from 12 hours.")
+else:
+    print("Fail to reject the null hypothesis: The average battery life is not significantly different from 12 hours.")

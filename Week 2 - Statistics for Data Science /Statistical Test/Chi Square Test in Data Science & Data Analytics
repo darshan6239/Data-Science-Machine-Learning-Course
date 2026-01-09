@@ -1,0 +1,101 @@
+Example: Income Level vs Subscription Status
+Let us examine a dataset with features including "income level" (low, medium, high) and "subscription status" (subscribed, not subscribed) indicate whether a 
+customer subscribed to a service. The goal is to determine if this feature is relevant for predicting subscription status.
+
+Step 1: Make Hypothesis
+Null hypothesis: No significant association between features
+Alternate Hypothesis: There is a significant association between features.
+
+Step 2: Contingency table
+Income Level    Subscribed    Not subscribed    Row Total
+Low                20             30               50
+Medium             40             25               65
+High               10             15               25
+Column Total       70             70               140
+
+Step 3: Now calculate the expected frequencies
+For example the expected frequency for "Low Income" and "Subscribed" would be:
+As Total count for each row RiRi is 70 and each column CjCj is 70 and Total number of observations are 140.
+Low Income, subscribed=(50×70)÷140=25
+(50×70)÷140=25
+
+Step 4: Calculate the Chi-Square Statistic
+Let's summarize the observed and expected values into a table and calculate the Chi-Square value:
+
+ 
+                     Subscribed (O)      Not Subscribed (O)      Subscribed (E)      Not Subscribed (E)
+
+Low Income              20                    30                     25                     25
+
+Medium Income           40                    25                    32.5                   32.5
+
+High Income             10                    15                    12.5                   12.5
+
+
+Now using the formula specified in equation 1 we can get our chi-square statistic values in the following manner:
+
+χ²=(20−25)²/25+(30−25)²/25+(40−32.5)²/32.5+(25−32.5)²/32.5+(10−12.5)²/12.5+(15−12.5)²/12.5=6.462
+χ²=(20−25)²/25+(30−25)²/25+(40−32.5)²/32.5+(25−32.5)²/32.5+(10−12.5)²/12.5+(15−12.5)²/12.5=6.462
+
+Step 5: Degrees of Freedom
+Degrees of Freedom (df)=(3−1)×(2−1)=2
+
+Step 6: Interpretations
+
+Now compare the calculated 
+χ2χ alue (6.462) with the critical value for 2 degrees of freedom. The critical value can be obtained either from a standard Chi-square distribution table or by using Python’s stats.chi2.ppf() function. If the calculated 
+χ2χ 2 is greater than the critical value, then we reject the null hypothesis.
+
+Before its implementation we should have some basic knowledge about numpy, matplotlib and scipy.
+
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.stats as stats
+
+df = 2
+alpha = 0.05
+
+critical_value = stats.chi2.ppf(1 - alpha, df)
+critical_value
+
+
+Output:
+5.991464547107979
+
+For df = 2 and significance level 
+α=0.05, the critical value is 5.991.
+
+Since 6.462 > 5.991, we reject the null hypothesis.
+Conclusion: There is a significant association between income level and subscription status.
+
+
+Visualizing Chi-Square Distribution
+
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.stats as stats
+
+df = 2
+alpha = 0.05
+c_val = stats.chi2.ppf(1 - alpha, df)
+cal_chi_s = 3.747
+
+x = np.linspace(0, 10, 1000)
+y = stats.chi2.pdf(x, df)
+
+plt.plot(x, y, label='Chi-Square Distribution (df=2)')
+plt.fill_between(x, y, where=(x > c_val), color='red', alpha=0.5, label='Critical Region')
+plt.axvline(cal_chi_s, color='blue', linestyle='dashed', label='Calculated Chi-Square')
+plt.axvline(c_val, color='green', linestyle='dashed', label='Critical Value')
+plt.title('Chi-Square Distribution and Critical Region')
+plt.xlabel('Chi-Square Value')
+plt.ylabel('Probability Density Function')
+plt.legend()
+plt.show()   #Graphical Output 
+
+
+In this example The green dashed line represents the critical value the threshold beyond which you would reject the null hypothesis.
+
+The red dashed line represents the critical value (5.991) for a significance level of 0.05 with 2 degrees of freedom.
+The shaded area to the right of the critical value represents the rejection region.
+If the calculated Chi-Square statistic falls within this shaded area then you would reject the null hypothesis.

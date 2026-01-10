@@ -1,0 +1,88 @@
+Step-by-Step Implementation
+Let's see an example using PyTorch,
+
+Step 1: Import Libraries
+Let's import the required libraries,
+Torch: Modern libraries utilize automatic differentiation and GPU acceleration. PyTorch syntax is widely used in research and industry.
+---------------------------------------------------------------------------------------------------------------------------------------
+import torch
+import torch.nn as nn
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Step 2: Define the Neural Network Architecture
+We prepare a two-layer neural network (input -> hidden -> output) with sigmoid activation.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+class SimpleNet(nn.Module):
+    def __init__(self):
+        super(SimpleNet, self).__init__()
+        self.hidden = nn.Linear(2, 2)
+        self.output = nn.Linear(2, 1)
+        self.sigmoid = nn.Sigmoid()
+
+    def forward(self, x):
+        a1 = self.sigmoid(self.hidden(x))
+        a2 = self.sigmoid(self.output(a1))
+        return a2
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Step 3: Set Up Input, Weights and Biases
+Weights and biases are automatically initialized.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+net = SimpleNet()
+x = torch.tensor([[0.5, 1.5]], dtype=torch.float32)
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Step 4: Forward Pass: Compute Output
+The forward pass computes network output for given input by passing data through layers and activations.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+output = net(x)
+print(f"Neural Network Output: {output.item():.6f}")
+
+output 
+Neural Network Output: 0.331014
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Step 5: Compute Loss and Apply Chain Rule.
+Modern frameworks use autograd for derivatives. Let's use MSE loss for simplicity.
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+target = torch.tensor([[1.0]], dtype=torch.float32)
+
+criterion = nn.MSELoss()
+loss = criterion(output, target)
+print(f"Loss: {loss.item():.6f}")
+
+loss.backward()
+
+output
+Loss: 0.447543
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+Step 6: Access Computed Gradients (Backpropagation)
+After calling loss.backward(), gradients are stored and can be accessed for optimization:
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
+print("Gradient for hidden weights:\n", net.hidden.weight.grad)
+print("Gradient for output weights:\n", net.output.weight.grad)
+
+Output:
+
+Gradient for hidden weights:  
+tensor([[0.0023, 0.0068],
+         [0.0106, 0.0317]]) 
+
+Gradient for output weights:  
+tensor([[-0.1109, -0.1770]])
+---------------------------------------------------------------------------------------------------------------------------------------
+
+

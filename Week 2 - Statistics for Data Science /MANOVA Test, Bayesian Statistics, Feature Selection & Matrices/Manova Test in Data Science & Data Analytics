@@ -1,0 +1,67 @@
+In this implementation, 150 samples with six independent variables and four dependent variables (computed with some noise) are analyzed using MANOVA. 
+The goal is to identify significant relationships between independent and dependent variables, enabling feature selection by retaining key predictors, 
+reducing dimensionality, and enhancing model efficiency.
+
+import pandas as pd
+import numpy as np
+import statsmodels.api as sm
+from statsmodels.multivariate.manova import MANOVA
+
+np.random.seed(42)
+num_samples = 150
+
+# Independent Features
+X = pd.DataFrame({
+    'feature1': np.random.normal(10, 2, num_samples),
+    'feature2': np.random.normal(20, 5, num_samples),
+    'feature3': np.random.normal(30, 10, num_samples),
+    'feature4': np.random.normal(40, 15, num_samples),
+    'feature5': np.random.normal(50, 20, num_samples), 
+    'feature6': np.random.normal(15, 20, num_samples)
+})
+
+# Dependent variables 
+Y = pd.DataFrame({
+    'target1': 0.5 * X['feature1'] + 0.2 * X['feature2'] + np.random.normal(0, 1, num_samples),
+    'target2': 0.3 * X['feature3'] + 0.1 * X['feature4'] + np.random.normal(0, 1, num_samples),
+    'target3': 0.4 * X['feature5'] + 0.3 * X['feature1'] + np.random.normal(0, 1, num_samples), 
+    'target4': 0.9 * X['feature6'] + 0.3 * X['feature4'] + np.random.normal(0, 1, num_samples)
+})
+
+# Combine X and Y into a single DataFrame for MANOVA
+data = pd.concat([X, Y], axis=1)
+
+-------------------------------------------------------------------------------------------------------------------------------
+
+The MANOVA test is performed using MANOVA.from_formula(), where the dependent variables are target1, target2, and target3, and the independent variables are 
+feature1 to feature6.
+
+-------------------------------------------------------------------------------------------------------------------------------
+# MANOVA model
+formula = 'target1 + target2 + target3 ~ feature1 + feature2 + feature3 + feature4 + feature5 + feature6'
+manova = MANOVA.from_formula(formula, data=data)
+results = manova.mv_test()
+-------------------------------------------------------------------------------------------------------------------------------
+
+Features with p-values < 0.05 are selected as significant predictors. This helps in reducing the dimensionality of the dataset while maintaining significant variables 
+for further modeling.
+
+-------------------------------------------------------------------------------------------------------------------------------
+# Extract p-values
+p_values = results.results['feature1']['stat']['Pr > F']  # Extracting p-values for feature1
+all_features = X.columns.tolist()
+
+# Select significant features (p-value < 0.05)
+selected_features = [feature for feature, p in zip(all_features, p_values) if p < 0.05]
+print("\nMANOVA Results:\n", results)
+print("\nSelected Features Based on MANOVA (p < 0.05):", selected_features)
+-------------------------------------------------------------------------------------------------------------------------------
+
+After running the above script, the output will include:
+
+Pillai’s Trace
+Wilks' Lambda (to determine significance)
+Hotelling’s Trace
+Roy’s Largest Root
+
+

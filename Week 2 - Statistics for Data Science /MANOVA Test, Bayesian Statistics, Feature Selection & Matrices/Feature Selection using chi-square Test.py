@@ -2,7 +2,7 @@
 
 #Step 1: Loading and Preparing the Dataset 
 #We'll be using Pandas library for loading the dataset into a pandas DataFrame and Scikit Learn library to do Feature Selection.
-#(Data Sheet is Attached with it outside) 
+#(Data Sheet is Attached with it outside)  --> customer_purchase_data.csv
 
 import pandas as pd
 import sklearn

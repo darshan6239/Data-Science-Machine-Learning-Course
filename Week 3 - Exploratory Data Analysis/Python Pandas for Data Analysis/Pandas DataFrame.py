@@ -7,7 +7,6 @@
 #   If we have a simple list of data, we can easily create a DataFrame by passing that list to the pd.DataFrame() function.
 
 import pandas as pd
- 
 lst = ['Geeks', 'For', 'Geeks', 'is', 
             'portal', 'for', 'Geeks']
 

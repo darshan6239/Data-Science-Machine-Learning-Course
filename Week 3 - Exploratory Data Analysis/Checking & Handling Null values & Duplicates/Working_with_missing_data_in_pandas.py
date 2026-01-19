@@ -186,4 +186,16 @@ df = pd.DataFrame(dict)
 
 df.dropna(axis=1)
 
+#   4. Dropping Rows with Missing Values in CSV Files
+#   When working with CSV files, we can drop rows with missing values using dropna().
+#   Example
+
+import pandas as pd
+d = pd.read_csv("/content/employees.csv")
+
+nd = d.dropna(axis=0, how='any')
+
+print("Old data frame length:", len(d))
+print("New data frame length:", len(nd))
+print("Rows with at least one missing value:", (len(d) - len(nd)))
 

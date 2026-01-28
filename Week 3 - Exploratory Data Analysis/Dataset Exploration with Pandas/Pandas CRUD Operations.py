@@ -6,6 +6,7 @@
 """ 1. Create: Creating Dataframe """
 #   Creating a dataset in Pandas means building a DataFrame which is the main data structure in Pandas. We can create a DataFrame using various methods like reading from a file or directly creating one from Python objects like dictionaries, lists or arrays
 
+
 """ 1. Creating a DataFrame from a Dictationary """
 #   This is one of the easiest and most commonly used methods to create a dataset in Pandas
 import pandas as pd
@@ -33,6 +34,7 @@ df = pd.DataFrame({
 })
 
 print(df)
+
 
 """ 3. Creating a DataFrame from a CSV File """
 #   We can also create a DataFrame by reading an external file like a CSV. Here we used the random car.csv data.

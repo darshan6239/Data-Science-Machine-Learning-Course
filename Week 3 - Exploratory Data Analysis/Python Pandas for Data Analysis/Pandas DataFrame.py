@@ -3,6 +3,7 @@
 
 #  Here are some ways by which we create a dataframe:
 
+
 """ 1. Creating DataFrame using a List """
 #   If we have a simple list of data, we can easily create a DataFrame by passing that list to the pd.DataFrame() function.
 
@@ -12,6 +13,7 @@ lst = ['Geeks', 'For', 'Geeks', 'is',
 
 df = pd.DataFrame(lst)
 print(df)
+
 
 """ 2. Creating DataFrame from dict of ndarray/lists """"
 #   We can create a DataFrame from a dictionary where the keys are column names and the values are lists or arrays.

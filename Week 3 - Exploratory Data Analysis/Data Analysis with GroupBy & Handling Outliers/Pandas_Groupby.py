@@ -3,6 +3,7 @@
 The groupby() operation is divided into three main steps: """
 
 #   Step 1: Splitting Data into Groups
+
 #   The splitting process refers to dividing the dataset into groups based on a particular condition or key. This can be done using the groupby() function by passing one or more columns as keys.
 
 #   Methods for splitting data are as follows:

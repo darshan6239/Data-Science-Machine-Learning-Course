@@ -3,6 +3,7 @@
 # A correlation matrix can be created using two libraries:
 
 """ 1. Using NumPy Library
+
 NumPy provides a simple way to create a correlation matrix. We can use the np.corrcoef() function to find the correlation between two or more variables.
 
 Example: A daily sales and temperature record is kept by an ice cream store. To find the relationship between sales and temperature, we can utilize the NumPy library where x is sales in dollars and y is the daily temperature. """

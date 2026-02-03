@@ -1,6 +1,7 @@
 """ Visualizing Data with Pyplot using Matplotlib
    Pyplot is a module in Matplotlib that provides a simple interface for creating plots. It allows users to generate charts like line graphs, bar charts and histograms with minimal code. Let’s explore some examples     with simple code to understand how to use it effectively. """
 
+
 #   1. Line Chart
 #   Line chart is one of the basic plots and can be created using plot() function. It is used to represent a relationship between two data X and Y on a different axis.
 

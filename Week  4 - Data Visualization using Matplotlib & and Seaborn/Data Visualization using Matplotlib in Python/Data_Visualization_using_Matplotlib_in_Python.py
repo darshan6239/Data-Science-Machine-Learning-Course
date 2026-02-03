@@ -82,6 +82,7 @@ plt.xlabel("Day")
 plt.ylabel("Total Bill")
 plt.show()
 
+
 #   5. Pie Chart
 #   Pie chart is a circular chart used to show data as proportions or percentages. It is created using the pie(), where each slice (wedge) represents a part of the whole.
 

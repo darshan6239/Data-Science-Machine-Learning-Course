@@ -9,6 +9,7 @@
     Parameter: x, y Coordinates for data points.
     Example: This code plots a simple line chart with labeled axes and a title using Matplotlib. """
 
+
 import matplotlib.pyplot as plt
 
 x = [10, 20, 30, 40]

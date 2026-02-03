@@ -62,6 +62,7 @@ plt.xlabel("Total Bill")
 plt.ylabel("Frequency")
 plt.show()
 
+
 #   4. Scatter Plot
 #   Scatter plots are used to observe relationships between variables. The scatter() method in the matplotlib library is used to draw a scatter plot.
 

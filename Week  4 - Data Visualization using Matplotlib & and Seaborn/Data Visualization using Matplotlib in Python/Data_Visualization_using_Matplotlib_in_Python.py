@@ -21,6 +21,7 @@ plt.ylabel('Y-Axis')
 plt.xlabel('X-Axis')
 plt.show()
 
+
 #   2.. Bar Chart
 #   Bar chart displays categorical data using rectangular bars whose lengths are proportional to the values they represent. It can be plotted vertically or horizontally to compare different categories.
 

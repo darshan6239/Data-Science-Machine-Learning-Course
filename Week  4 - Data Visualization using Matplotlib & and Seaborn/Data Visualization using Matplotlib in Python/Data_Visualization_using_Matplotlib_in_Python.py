@@ -127,6 +127,7 @@ plt.ylabel("Values")
 plt.title("Box Plot")
 plt.show()
 
+
 #   7. Heatmap
 """Heatmap is a graphical representation of data where values are shown as colors. It helps visualize patterns, correlations or intensity in a matrix-like format. It is created using imshow() method in Matplotlib.
 

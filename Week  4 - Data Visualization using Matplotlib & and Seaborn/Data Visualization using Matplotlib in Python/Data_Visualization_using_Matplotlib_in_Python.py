@@ -204,6 +204,7 @@ plt.show()
 #   3. Customizing Histogram Plot
 #   To make histogram plots more effective various customizations can be applied:
 
+
 """Bins: Number of groups (bins) to divide data into
    Color: Bar fill color
    Edgecolor: Bar edge color

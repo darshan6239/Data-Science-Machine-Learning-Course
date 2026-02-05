@@ -103,6 +103,7 @@ plt.pie(data, labels=cars)
 plt.title(" Pie Chart")
 plt.show()
 
+
 #   6. Box Plot
 """ Box plot is a simple graph that shows how data is spread out. It displays the minimum, maximum, median and quartiles and also helps to spot outliers easily.
 

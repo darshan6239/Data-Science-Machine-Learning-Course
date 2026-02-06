@@ -1,7 +1,6 @@
 """ Visualizing Data with Pyplot using Matplotlib
    Pyplot is a module in Matplotlib that provides a simple interface for creating plots. It allows users to generate charts like line graphs, bar charts and histograms with minimal code. Let’s explore some examples     with simple code to understand how to use it effectively. """
 
-
 #   1. Line Chart
 #   Line chart is one of the basic plots and can be created using plot() function. It is used to represent a relationship between two data X and Y on a different axis.
 
@@ -42,7 +41,6 @@ plt.xlabel("Day")
 plt.ylabel("Total Bill")
 plt.show()
 
-
 #   3.Histogram
 #   Histogram shows the distribution of data by grouping values into bins. The hist() function is used to create it, with X-axis showing bins and Y-axis showing frequencies.
 
@@ -62,7 +60,6 @@ plt.xlabel("Total Bill")
 plt.ylabel("Frequency")
 plt.show()
 
-
 #   4. Scatter Plot
 #   Scatter plots are used to observe relationships between variables. The scatter() method in the matplotlib library is used to draw a scatter plot.
 
@@ -81,7 +78,6 @@ plt.title("Scatter Plot")
 plt.xlabel("Day")
 plt.ylabel("Total Bill")
 plt.show()
-
 
 #   5. Pie Chart
 #   Pie chart is a circular chart used to show data as proportions or percentages. It is created using the pie(), where each slice (wedge) represents a part of the whole.

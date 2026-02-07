@@ -312,3 +312,126 @@ df = px.data.tips()
 fig = px.scatter_3d(df, x="total_bill", y="sex", z="tip", color='day', 
                     size='total_bill', symbol='time')
 fig.show()
+
+""" Implementing Interactive Features in Plotly
+Plotly provides various interactive features which allows users to zoom, hover and click for deeper insights. Beyond these built-in interactions it allows customization with tools like dropdown menus, buttons and sliders. These can be added using the update menu attribute in the plot layout. Let’s explore these features:
+
+1. Dropdown Menu
+A drop-down menu allows users to select different options to modify the chart. The update method is used to control the chart based on dropdown choices. In plotly there are 4 possible methods to modify the charts by using update menu method.
+
+--restyle: modify data or data attributes
+--relayout: modify layout attributes
+--update: modify data and layout attributes
+--animate: start or pause an animation
+
+Example: Here we will be using Tips dataset which contains 244 rows and 7 columns and with each row representing a single restaurant bill and associated information."""
+
+import plotly.graph_objects as go
+import plotly.express as px
+import numpy as np
+import pandas as pd
+
+df = px.data.tips()
+plot = go.Figure(data=[go.Scatter(
+    x=df['day'],
+    y=df['tip'],
+    mode='markers',)
+])
+plot.update_layout(
+    updatemenus=[
+        dict(buttons=list([
+            dict(
+                args=["type", "scatter"],
+                label="Scatter Plot",
+                method="restyle"
+            ),
+            dict(
+                args=["type", "bar"],
+                label="Bar Chart",
+                method="restyle"
+            )
+        ]),
+            direction="down",
+        ),
+    ]
+)
+plot.show()
+
+""" 2. Adding Buttons
+In plotly, adding custom Buttons are used to quickly make actions directly from a record. Custom Buttons can be added to page layouts in CRM, Marketing and Custom Apps. There are also 4 possible methods that can be applied in custom buttons:
+
+restyle: modify data or data attributes
+relayout: modify layout attributes
+update: modify data and layout attributes
+animate: start or pause an animation
+Example: """
+
+import plotly.graph_objects as go
+import plotly.express as px
+import pandas as pd
+
+df = px.data.tips()
+
+plot = go.Figure(data=[go.Scatter(
+    x=df['day'],
+    y=df['tip'],
+    mode='markers',)
+])
+
+plot.update_layout(
+    updatemenus=[
+        dict(
+            type="buttons",
+            direction="left",
+            buttons=list([
+                dict(
+                    args=["type", "scatter"],
+                    label="Scatter Plot",
+                    method="restyle"
+                ),
+                dict(
+                    args=["type", "bar"],
+                    label="Bar Chart",
+                    method="restyle"
+                )
+            ]),
+        ),
+    ]
+)
+plot.show()
+
+""" 3. Creating Sliders and Selectors to the Plot
+In Plotly, the range slider is an input control that allows users to select a value range between a specified minimum and maximum. It allows selecting pre-configured ranges and manually inputting minimum and maximum values or dates.
+
+Example: """
+import plotly.graph_objects as px
+import plotly.express as go
+import numpy as np
+
+df = go.data.tips()
+
+x = df['total_bill']
+y = df['tip']
+
+plot = px.Figure(data=[px.Scatter(
+    x=x,
+    y=y,
+    mode='markers',)
+])
+
+plot.update_layout(
+    xaxis=dict(
+        rangeselector=dict(
+            buttons=list([
+                dict(count=1,
+                    step="day",
+                    stepmode="backward"),
+            ])
+        ),
+        rangeslider=dict(
+            visible=True
+        ),
+    )
+)
+plot.show()
+

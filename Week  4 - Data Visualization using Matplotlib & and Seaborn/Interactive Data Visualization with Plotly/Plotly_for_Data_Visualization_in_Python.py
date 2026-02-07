@@ -435,3 +435,36 @@ plot.update_layout(
 )
 plot.show()
 
+""" Building Interactive Dashboards with Plotly Dash
+Plotly Dash is a framework for building interactive web applications with Python. It allows us to create dynamic and visually appealing dashboards that can handle complex interactions and data visualizations. In this section, we will see the importance of building interactive dashboards using Plotly Dash.
+
+Steps to Create a Basic Dash App:
+
+1. Install the necessary packages: 
+!pip install dash
+
+!pip install --upgrade plotly
+
+2. Create and run the Dash app: """
+import dash
+from dash import dcc, html
+import plotly.express as px
+import pandas as pd
+
+df = pd.DataFrame({
+    'x': [1, 2, 3, 4, 5],
+    'y': [10, 15, 13, 17, 14]
+})
+
+app = dash.Dash(__name__)
+
+app.layout = html.Div([
+    dcc.Graph(
+        id='example-graph',
+        figure=px.scatter(df, x='x', y='y', title='Scatter Plot in Dash')
+    )
+])
+if __name__ == '__main__':
+    app.run(debug=True, port=8050)6
+
+"""With Plotly we can easily create interactive dashboards that make exploring and understanding data more engaging and insightful."""

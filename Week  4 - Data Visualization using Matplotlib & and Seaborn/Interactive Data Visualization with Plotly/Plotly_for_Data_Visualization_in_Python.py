@@ -157,3 +157,158 @@ df = px.data.tips()
 fig = px.histogram(df, x="total_bill")
 fig.show()
 
+""" Let's customize the above graph.
+
+Example: Customizations that we will be using are - 
+
+color: To color the bars
+nbins: To set the number of bins
+histnorm: Mode through which the bins are represented. Different values that can be passed using this argument.
+Here barmode can be either 'group', 'overlay' or 'relative'.
+
+group: Bars are stacked above zero for positive values and below zero for negative values
+overlay: Bars are drawn on the top of each other
+group: Bars are placed beside each other."""
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.histogram(df, x="total_bill", color='sex',
+                   nbins=50, histnorm='percent',
+                   barmode='overlay')
+fig.show()
+
+""" 5. Pie Chart
+A pie chart is a circular statistical graphic which is divided into slices to show numerical proportions. It shows a special chart that uses “pie slices” where each sector shows the relative sizes of data. A circular chart cuts in a form of radii into segments to magnitude of different features. It can be created using the px.pie() method.
+
+Syntax:  plotly.express.pie(data_frame=None, names=None, values=None, color=None, hole=None, title=None, width=None, height=None)
+
+Parameters:
+data_frame: Dataset to plot.
+names: Column name for the pie chart labels.
+values: Column name for the size of the slices.
+hole: Creates a donut chart when set between 0 and 1.
+Return: A plotly.express.Figure object.
+
+Example: """
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.pie(df, values="total_bill", names="day")
+fig.show()
+
+""" Let's customize the above graph.
+
+Example: Customizations that we will be using are:
+
+--color_discrete_sequence: Strings defining valid CSS colors
+--opacity: It finds how transparent or solid the markers (such as points on a scatter plot) appear. The value should be between 0 and 1
+--hole: Creates a hole in between to make it a donut chart. The value should be between 0 and 1 """
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.pie(df, values="total_bill", names="day",
+             color_discrete_sequence=px.colors.sequential.RdBu,
+             opacity=0.7, hole=0.5)
+fig.show()
+
+""" 6. Box Plot
+A Box Plot is also known as Whisker plot is created to display the summary of the set of data values having properties like minimum, first quartile, median, third quartile and maximum. In the box plot, a box is created from the first quartile to the third quartile, a vertical line is also there which goes through the box at the median. Here x-axis denotes the data to be plotted while the y-axis shows the frequency distribution. It can be created using the px.box() method
+
+Syntax: plotly.express.box(data_frame=None, x=None, y=None, color=None, facet_row=None, facet_col=None, title=None, width=None, height=None)
+
+Parameters:
+data_frame: Dataset to plot.
+x: The column name for the X-axis.
+y: The column name for the Y-axis.
+color: Color the boxes based on this column.
+Return: A plotly.express.Figure object.
+
+Example: """
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.box(df, x="day", y="tip")
+fig.show()
+
+""" Let's customize the above graph.  
+
+Example: Customizations that we will be using are - 
+
+--color: used to assign color to marks
+--facet_row: assign marks to facetted subplots in the vertical direction
+--facet_col: assign marks to facetted subplots in the horizontal direction
+--boxmode: One of ‘group’ or ‘overlay’ In ‘overlay’ mode, boxes are on drawn top of one another. In ‘group’ mode, boxes are placed beside each other.
+--notched: If True, boxes are drawn with notches """
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.box(df, x="day", y="tip", color='sex',
+             facet_row='time', boxmode='group',
+             notched=True)
+fig.show()
+
+""" 7. Violin Plot
+Violin Plot is a method to visualize the distribution of numerical data of different variables. It is similar to Box Plot but with a rotated plot on each side helps in giving more information about the density estimate on the y-axis. The density is mirrored and flipped over and the resulting shape is filled in creating an image resembling a violin. The advantage of a violin plot is that it can show distribution that aren’t shown in a boxplot. On the other hand the boxplot more clearly shows the outliers in the data. It can be created using the px.violin() method.
+
+Syntax:  plotly.express.violin(data_frame=None, x=None, y=None, color=None, facet_row=None, facet_col=None, title=None, width=None, height=None)
+
+Parameters:
+
+data_frame: Dataset to plot.
+x: The column name for the X-axis.
+y: The column name for the Y-axis.
+color: Color the violins based on this column.
+Return: A plotly.express.Figure object.
+
+Example: """
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.violin(df, x="day", y="tip")
+fig.show()
+
+""" Let's customize the above graph.  
+
+Example: For customizing the violin plot we will use the same customizations available for the box plot except the boxmode and notched which are not available for the violin plot Setting this parameter to True will show a box plot inside the violin plot. """
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.violin(df, x="day", y="tip", color='sex',
+                facet_row='time', box=True)
+fig.show()
+
+""" 8. 3D Scatter Plot
+3D Scatter Plot shows data points in three dimensions, adding extra information by adjusting color, size and style of the points. These adjustments help make the plot clearer and easier to understand. You can create a 3D scatter plot using the scatter_3d function from the plotly.express class.
+
+Syntax:  plotly.express.scatter_3d(data_frame=None, x=None, y=None, z=None, color=None, symbol=None, size=None, title=None, width=None, height=None)
+
+Parameters:
+
+data_frame: Dataset to plot.
+x: The column name for the X-axis.
+y: The column name for the Y-axis.
+z: The column name for the Z-axis.
+color: Color the points based on this column.
+size: Size of the points.
+Return: A plotly.express.Figure object.
+
+Example: """
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.scatter_3d(df, x="total_bill", y="sex", z="tip")
+fig.show()
+
+"""Customizing the 3D scatter plot.
+
+Example: We will use the following customization - 
+
+color: Set the color of the markers
+size: Set the size of the marker
+symbol: Set the symbol of the plot """
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.scatter_3d(df, x="total_bill", y="sex", z="tip", color='day', 
+                    size='total_bill', symbol='time')
+fig.show()

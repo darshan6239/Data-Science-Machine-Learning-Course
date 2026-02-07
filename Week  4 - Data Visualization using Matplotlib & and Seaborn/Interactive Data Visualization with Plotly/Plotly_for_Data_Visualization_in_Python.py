@@ -71,3 +71,89 @@ fig = px.line(df, y="sepal_width", line_dash='species',
               color='species')
 fig.show()
 
+""" 2. Bar Chart
+A bar chart is a pictorial representation of data that presents categorical data with rectangular bars with heights or lengths proportional to the values that they represent. These data sets contain the numerical values of variables that represent the length or height. It can be created using the px.bar() method.
+
+Syntax:  plotly.express.bar(data_frame=None, x=None, y=None, color=None, title=None)
+
+Parameters:
+
+data_frame: Dataset to plot.
+x: The column name for the X-axis.
+y: The column name for the Y-axis.
+color: Color the bars based on this column.
+title: Title of the plot.
+Return: A plotly.express.Figure object.
+
+Example:
+We will be using tips dataset and df = px.data.tips() from the plotly.express library loads a sample dataset about tips into a Pandas DataFrame. This dataset contains 244 rows and 7 columns with each row representing a single restaurant bill and associated information. """
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.bar(df, x='day', y="total_bill")
+fig.show()
+
+""" Let's try to customize this plot.
+
+Example: Customizations that we will use -
+
+color: Used to color the bars.
+facet_row: Divides the graph into rows according to the data passed
+facet_col: Divides the graph into columns according to the data passed """
+import plotly.express as px
+df = px.data.tips()
+fig = px.bar(df, x='day', y="total_bill", color='sex',
+             facet_row='time', facet_col='sex')
+fig.show()
+
+""" 3. Scatter Plot
+A scatter plot is a set of dotted points to represent individual pieces of data in the horizontal and vertical axis. A graph in which the values of two variables are plotted along X-axis and Y-axis, the pattern of the resulting points reveals a correlation between them and it can be created using the px.scatter() method.
+ 
+Syntax:  plotly.express.scatter(data_frame=None, x=None, y=None, color=None, title=None)
+
+Parameters:
+data_frame: Dataset to plot.
+x: The column name for the X-axis.
+y: The column name for the Y-axis.
+color: Color the bars based on this column.
+title: Title of the plot.
+Return: A plotly.express.Figure object.
+
+Example:"""
+import plotly.express as px
+df = px.data.tips()
+fig = px.scatter(df, x='total_bill', y="tip")
+fig.show()
+
+""" Example: Let's see various customizations available for this chart that we will use - 
+
+color: Color the points.
+symbol: Gives a symbol to each point according to the data passed.
+size: Size for each point."""
+
+import plotly.express as px
+df = px.data.tips()
+fig = px.scatter(df, x='total_bill', y="tip", color='time',
+                 symbol='sex', size='size', facet_row='day',
+                 facet_col='time')
+fig.show()
+
+""" 4. Histogram
+A histogram is used to represent data in the form of some groups. It is a type of bar plot where the X-axis represents the bin ranges while the Y-axis gives information about frequency. It can be created using the px.histogram() method.
+
+Syntax:  plotly.express.histogram(data_frame=None, x=None, y=None, color=None, nbins=None, histnorm=None, title=None, width=None, height=None) 
+
+Parameters:
+data_frame: Dataset to plot.
+x: The column name for the X-axis (values to be binned).
+color: Color the bars based on this column.
+nbins: Set the number of bins.
+histnorm: Normalize the histogram (e.g"percent", "density").
+Return: A plotly.express.Figure object.
+
+Example: """
+import plotly.express as px
+df = px.data.tips()
+fig = px.histogram(df, x="total_bill")
+fig.show()
+

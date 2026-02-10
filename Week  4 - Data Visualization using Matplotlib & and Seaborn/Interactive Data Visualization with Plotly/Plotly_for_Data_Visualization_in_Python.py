@@ -23,6 +23,7 @@ Adjusting chart layout
 Adding annotations
 Customizing markers and lines
 
+
 ---> 1. Line chart
 Plotly line chart is one of the simple plots where a line is drawn to show relation between the X-axis and Y-axis. It can be created using the px.line() method with each data position is represented as a vertex of a polyline mark in 2D space.
 

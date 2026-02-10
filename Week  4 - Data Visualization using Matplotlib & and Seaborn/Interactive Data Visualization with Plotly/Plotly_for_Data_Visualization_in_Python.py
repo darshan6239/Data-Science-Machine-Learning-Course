@@ -6,7 +6,6 @@ To get started with Plotly simply install it using the following command:
 Understanding Plotly Modules
 Plotly consists of two key modules:
 
-
 1) plotly.graph_objects: This module is used to define and create plots. It contains objects such as Figure, layout and data which are responsible for plotting.
 2) plotly.express: This is a high-level interface for creating a wide variety of plots with minimal code. It simplifies the process of creating complex visualizations and allows users to create figures with just one line of code.
 
@@ -44,7 +43,6 @@ import plotly.express as px
 df = px.data.iris()
 
 fig = px.line(df, y="sepal_width",)
-
 fig.show()
 """ In the above example, we can see that:
 

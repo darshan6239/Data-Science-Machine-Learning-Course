@@ -94,6 +94,7 @@ fig.show()
 
 """ Let's try to customize this plot.
 
+
 Example: Customizations that we will use -
 
 color: Used to color the bars.

@@ -8,7 +8,6 @@ NumPy provides a simple way to create a correlation matrix. We can use the np.co
 
 Example: A daily sales and temperature record is kept by an ice cream store. To find the relationship between sales and temperature, we can utilize the NumPy library where x is sales in dollars and y is the daily temperature. """
 
-
 import numpy as np
 x = [215, 325, 185, 332, 406, 522, 412,
      614, 544, 421, 445, 408],

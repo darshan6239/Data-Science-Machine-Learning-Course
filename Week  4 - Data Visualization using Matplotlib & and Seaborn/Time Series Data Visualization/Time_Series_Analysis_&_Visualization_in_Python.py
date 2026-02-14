@@ -18,7 +18,6 @@ Concepts in Time Series Analysis
 
 Types of Time Series Data
    Time series data can be classified into two sections:
-
 1) Continuous Time Series: Data recorded at regular intervals with a continuous range of values like temperature, stock prices, Sensor Data, etc.
 2) Discrete Time Series: Data with distinct values or categories recorded at specific time points like counts of events, categorical statuses, etc.
 Visualization Approaches

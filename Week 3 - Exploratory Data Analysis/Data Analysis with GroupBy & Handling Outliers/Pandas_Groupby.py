@@ -8,7 +8,6 @@ The groupby() operation is divided into three main steps: """
 #   Methods for splitting data are as follows:
 #   1. Group data by a single key: In order to group data with one key we pass only one key as an argument in groupby function. Here we will group the data by the Name column.
 
-
 import pandas as pd
 data1 = {'Name':['Jai', 'Anuj', 'Jai', 'Princi',
                  'Gaurav', 'Anuj', 'Princi', 'Abhi'],

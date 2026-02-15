@@ -104,7 +104,6 @@ plt.show()
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-
 data = {'Name': ['ANSH', 'SAHIL', 'ANSH', 'JAYAN', 'ANURAG', 'ANURAG', 'ANURAG', 'SAHIL']}
 df = pd.DataFrame(data)
 

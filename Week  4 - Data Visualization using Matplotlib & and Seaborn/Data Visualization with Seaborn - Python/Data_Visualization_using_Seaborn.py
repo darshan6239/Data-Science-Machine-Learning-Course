@@ -211,7 +211,6 @@ import matplotlib.pyplot as plt
 sns.set_style("whitegrid")
 custom_palette = sns.color_palette("husl", 8)
 sns.set_palette(custom_palette)
-
 data = sns.load_dataset("iris")
 sns.pairplot(data, hue="species")
 plt.show()

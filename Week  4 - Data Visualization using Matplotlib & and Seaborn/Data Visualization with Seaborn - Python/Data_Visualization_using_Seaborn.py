@@ -246,6 +246,7 @@ Seaborn simplifies the process of performing and visualizing regressions specifi
 regplot(): This function plots a scatter plot along with a linear regression model fit.
 lmplot(): This function also plots linear models but provides more flexibility in handling multiple facets and datasets.
 Example: Let’s use a simple dataset to visualize a linear regression between two variables: x (independent variable) and y (dependent variable). """
+
 import seaborn as sns
 import matplotlib.pyplot as plt
 

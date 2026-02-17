@@ -32,3 +32,46 @@ df.shape
 
 #   2. df.info(): This function helps us to understand the dataset by showing the number of records in each column, type of data, whether any values are missing and how much memory the dataset uses.
 df.info()
+
+#  3. df.describe().T: This method gives a statistical summary of the DataFrame (Transpose) showing values like count, mean, standard deviation, minimum and quartiles for each numerical column. It helps in summarizing the central tendency and spread of the data.
+df.describe().T
+
+#   4. df.columns.tolist(): This converts the column names of the DataFrame into a Python list making it easy to access and manipulate the column names.
+df.columns.tolist()
+
+#   Step 4 : Checking Missing Values
+#   df.isnull().sum(): This checks for missing values in each column and returns the total number of null values per column helping us to identify any gaps in our data.
+df.isnull().sum()
+
+#   Step 5 : Checking for the duplicate values
+#   df.nunique(): This function tells us how many unique values exist in each column which provides insight into the variety of data in each feature.
+df.nunique()
+
+
+#   Step 6: Univariate Analysis
+#   In Univariate analysis plotting the right charts can help us to better understand the data making the data visualization so important.
+
+#   1. Bar Plot for evaluating the count of the wine with its quality rate.
+quality_counts = df['quality'].value_counts()
+
+plt.figure(figsize=(8, 6))
+plt.bar(quality_counts.index, quality_counts, color='deeppink')
+plt.title('Count Plot of Quality')
+plt.xlabel('Quality')
+plt.ylabel('Count')
+plt.show()
+
+#   2. Kernel density plot for understanding variance in the dataset
+sns.set_style("darkgrid")
+
+numerical_columns = df.select_dtypes(include=["int64", "float64"]).columns
+
+plt.figure(figsize=(14, len(numerical_columns) * 3))
+for idx, feature in enumerate(numerical_columns, 1):
+    plt.subplot(len(numerical_columns), 2, idx)
+    sns.histplot(df[feature], kde=True)
+    plt.title(f"{feature} | Skewness: {round(df[feature].skew(), 2)}")
+
+plt.tight_layout()
+plt.show()
+

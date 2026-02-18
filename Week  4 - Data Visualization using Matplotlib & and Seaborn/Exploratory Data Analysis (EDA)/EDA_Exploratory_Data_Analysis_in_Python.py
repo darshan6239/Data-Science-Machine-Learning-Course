@@ -75,3 +75,67 @@ for idx, feature in enumerate(numerical_columns, 1):
 plt.tight_layout()
 plt.show()
 
+#   3. Swarm Plot for showing the outlier in the data
+plt.figure(figsize=(10, 8))
+
+sns.swarmplot(x="quality", y="alcohol", data=df, palette='viridis')
+
+plt.title('Swarm Plot for Quality and Alcohol')
+plt.xlabel('Quality')
+plt.ylabel('Alcohol')
+plt.show()
+
+#   Step 7: Bivariate Analysis
+#    In bivariate analysis two variables are analyzed together to identify patterns, dependencies or interactions between them. This method helps in understanding how changes in one variable might affect another.
+
+#   1. Pair Plot for showing the distribution of the individual variables
+sns.set_palette("Pastel1")
+
+plt.figure(figsize=(10, 6))
+
+sns.pairplot(df)
+
+plt.suptitle('Pair Plot for DataFrame')
+plt.show()
+
+""" 1)    If the plot is diagonal , histograms of kernel density plots shows the distribution of the individual variables.
+    2)    If the scatter plot is in the lower triangle, it displays the relationship between the pairs of the variables.
+    3)    If the scatter plots above and below the diagonal are mirror images indicating symmetry.
+    4)    If the histogram plots are more centered, it represents the locations of peaks.
+    5)    Skewness is found by observing whether the histogram is symmetrical or skewed to the left or right. """
+
+#   2. Violin Plot for examining the relationship between alcohol and Quality.
+df['quality'] = df['quality'].astype(str)  
+
+plt.figure(figsize=(10, 8))
+
+sns.violinplot(x="quality", y="alcohol", data=df, palette={
+               '3': 'lightcoral', '4': 'lightblue', '5': 'lightgreen', '6': 'gold', '7': 'lightskyblue', '8': 'lightpink'}, alpha=0.7)
+
+plt.title('Violin Plot for Quality and Alcohol')
+plt.xlabel('Quality')
+plt.ylabel('Alcohol')
+plt.show()
+
+#   3. Box Plot for examining the relationship between alcohol and Quality
+sns.boxplot(x='quality', y='alcohol', data=df)
+
+#   Step 8: Multivariate Analysis
+#    It involves finding the interactions between three or more variables in a dataset at the same time. This approach focuses to identify complex patterns, relationships and interactions which provides understanding of how multiple variables collectively behave and influence each other.
+
+#    Here, we are going to show the multivariate analysis using a correlation matrix plot.
+plt.figure(figsize=(15, 10))
+
+sns.heatmap(df.corr(), annot=True, fmt='.2f', cmap='Pastel2', linewidths=2)
+
+plt.title('Correlation Heatmap')
+plt.show()
+
+
+
+
+
+
+
+
+

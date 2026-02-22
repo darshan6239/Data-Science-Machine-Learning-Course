@@ -37,3 +37,8 @@ model = LinearRegression()
 
 model.fit(X_train, y_train)
 
+
+#    Step 6: Making Predictions
+#    Using the trained model to predict house prices on the test data.
+y_pred = model.predict(X_test)
+

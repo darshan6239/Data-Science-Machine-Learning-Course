@@ -42,3 +42,27 @@ model.fit(X_train, y_train)
 #    Using the trained model to predict house prices on the test data.
 y_pred = model.predict(X_test)
 
+#    Step 7: Visualizing Best Fit Line in 3D
+#    Plot a 3D graph where blue points represent actual house prices based on MedInc and AveRooms and the red surface shows the best-fit plane predicted by the model. This visualization helps us to understand how these two features influence the predicted house prices.
+fig = plt.figure(figsize=(10, 7))
+ax = fig.add_subplot(111, projection='3d')
+
+ax.scatter(X_test['MedInc'], X_test['AveRooms'],
+           y_test, color='blue', label='Actual Data')
+
+x1_range = np.linspace(X_test['MedInc'].min(), X_test['MedInc'].max(), 100)
+x2_range = np.linspace(X_test['AveRooms'].min(), X_test['AveRooms'].max(), 100)
+x1, x2 = np.meshgrid(x1_range, x2_range)
+
+z = model.predict(np.c_[x1.ravel(), x2.ravel()]).reshape(x1.shape)
+
+ax.plot_surface(x1, x2, z, color='red', alpha=0.5, rstride=100, cstride=100)
+
+ax.set_xlabel('Median Income')
+ax.set_ylabel('Average Rooms')
+ax.set_zlabel('House Price')
+ax.set_title('Multiple Linear Regression Best Fit Line (3D)')
+
+plt.show()
+
+

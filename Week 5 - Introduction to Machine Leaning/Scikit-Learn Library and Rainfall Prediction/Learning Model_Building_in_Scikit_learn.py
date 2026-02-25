@@ -87,6 +87,23 @@ from sklearn.linear_model import LogisticRegression
 log_reg = LogisticRegression(max_iter=200)
 log_reg.fit(X_train, y_train)
 
+#  Step 5: Make Predictions
+""" Once trained we use the model to make predictions on the test data X_test by calling the predict method. This returns predicted labels y_pred.
+
+log_reg.predict: It uses trained logistic regression model to predict labels for the test data X_test. """
+y_pred = log_reg.predict(X_test)
+
+#  Step 6: Evaluating Model Accuracy
+""" Check how well our model is performing by comparing y_test and y_pred. Here we are using the metrics module's method accuracy_score. """
+from sklearn import metrics
+print("Logistic Regression model accuracy:", metrics.accuracy_score(y_test, y_pred))
+
+""" Now we want our model to make predictions on new sample data. Then the sample input can simply be passed in the same way as we pass any feature matrix. Here we used it as sample = [[3, 5, 4, 2], [2, 3, 5, 4]] """ 
+sample = [[3, 5, 4, 2], [2, 3, 5, 4]]
+preds = log_reg.predict(sample)
+pred_species = [iris.target_names[p] for p in preds]
+print("Predictions:", pred_species)
+
 
 
 

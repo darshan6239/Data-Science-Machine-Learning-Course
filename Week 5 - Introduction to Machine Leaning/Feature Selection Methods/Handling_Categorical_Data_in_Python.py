@@ -132,3 +132,42 @@ plt.xlabel('Marriage Status')
 plt.ylabel('Income') 
 plt.tight_layout()
 plt.show()
+
+#    Step 9: Encoding Categorical Data
+#    Certain learning algorithms like regression and neural networks require their input to be numbers. Hence categorical data must be converted to numbers to use these algorithms. Let us see some encoding methods.
+
+#    1. Label Encoding
+
+#    With label encoding we can number the categories from 0 to num_categories - 1. Let us apply label encoding on the blood type feature.
+le = LabelEncoder()
+without_bogus_records['blood_type_encoded'] = le.fit_transform(without_bogus_records['blood_type'])
+
+without_bogus_records[['blood_type', 'blood_type_encoded']].drop_duplicates()
+
+#    2. One-hot Encoding in Python
+
+#    There are certain limitations of label encoding that are taken care of by one-hot encoding. Some of them are:
+
+"""1) Creates a false order: It gives numbers like 0, 1, 2 to categories which may make models think one category is bigger or better than the other.
+    2)Misleads models: Algorithms like linear regression or decision trees might assume there's a ranking which can reduce accuracy.
+    3)Problem with distance-based models: In models like KNN or K-Means, the numeric labels can wrongly influence distance calculations.
+    4) Bias in training: Some models may give more importance to higher label values, even if all categories are equal.
+    5) Not suitable for nominal data: Label encoding is not a good choice when categories have no natural order, like colors or city names. """ 
+inconsistent_data = pd.get_dummies(inconsistent_data, columns=['marriage_status'])
+inconsistent_data.head()
+
+#    3. Ordinal Encoding in Python
+
+#    Categorical data can be ordinal where the order is of importance. For such features, we want to preserve the order after encoding as well. We will perform ordinal encoding on income groups. We want to preserve the order as 40K-75K < 75K-100K < 100K-125K < 125K-150K < 150K+
+custom_map = {
+    '40k-75k': 1,
+    '75k-100k': 2,
+    '100k-125k': 3,
+    '125k-150k': 4,
+    '150k+': 5
+}
+remapping_data['income_groups_encoded'] = remapping_data['income_groups'].map(custom_map)
+remapping_data[['income', 'income_groups', 'income_groups_encoded']].head()
+
+
+#    With these techniques we can prepare categorical data for meaningful analysis and effective machine learning models.

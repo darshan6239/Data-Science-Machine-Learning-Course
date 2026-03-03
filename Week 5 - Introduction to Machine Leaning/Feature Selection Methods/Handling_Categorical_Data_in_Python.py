@@ -74,3 +74,61 @@ remapping_data['income_groups'] = pd.cut(
     labels=income_labels
 )
 remapping_data.head()
+
+#    Step 6: Visualizing Income Group Distribution
+#    Now lets visualize the distribution of income groups:
+remapping_data['income_groups'].value_counts().sort_index().plot.bar()
+plt.title('Income Group Distribution')
+plt.xlabel('Income Groups')
+plt.ylabel('Count')
+plt.tight_layout()
+plt.show()
+
+#    Step 7: Cleaning Phone Number Data
+#    Simulating phone numbers with inconsistent formats and cleaning them:
+import random
+phone_numbers = []
+
+for i in range(100):
+    number = random.randint(100000000, 9999999999)  # length can be 9 or 10 digits
+    if i % 2 == 0:
+        phone_numbers.append('+91 ' + str(number))  # add +91 prefix for some
+    else:
+        phone_numbers.append(str(number))
+
+phone_numbers_data = pd.DataFrame({
+    'phone_numbers': phone_numbers
+})
+phone_numbers_data.head()
+
+#    Based on the use case the country code before numbers could be dropped or added for missing ones. Similarly phone numbers with less than 10 numbers should be discarded.
+phone_numbers_data['phone_numbers'] = phone_numbers_data['phone_numbers'].str.replace(r'\+91 ', '', regex=True)
+num_digits = phone_numbers_data['phone_numbers'].str.len()
+invalid_numbers_index = phone_numbers_data[num_digits < 10].index
+phone_numbers_data.drop(invalid_numbers_index, inplace=True)
+phone_numbers_data.dropna(inplace=True)
+phone_numbers_data.reset_index(drop=True, inplace=True)
+phone_numbers_data.head()
+
+#    Finally we can verify whether the data is clean or not.
+assert not phone_numbers_data['phone_numbers'].str.contains(r'\+91 ').any(), "Found phone numbers with '+91 ' prefix"
+assert (phone_numbers_data['phone_numbers'].str.len() == 10).all(), "Some phone numbers do not have 10 digits"
+
+#    Step 8: Visualizing Categorical Data
+#    Various plots could be used to visualize categorical data to get more insights about the data. So let us visualize the number of people belonging to each blood type.
+import seaborn as sns
+sns.countplot(x='blood_type', data=without_bogus_records)
+plt.title('Count of Blood Types')
+plt.xlabel('Blood Type')
+plt.ylabel('Count')
+plt.tight_layout()
+plt.show()
+
+#    Now we can see the relationship between income and the marital status of a person using a boxplot. 
+sns.boxplot(x='marriage_status', y='income', data=inconsistent_data)
+
+plt.title('Income Distribution by Marriage Status')
+plt.xlabel('Marriage Status')
+plt.ylabel('Income') 
+plt.tight_layout()
+plt.show()

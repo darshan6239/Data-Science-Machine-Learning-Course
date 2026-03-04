@@ -32,7 +32,6 @@ from sklearn.model_selection import train_test_split
 from sklearn import datasets, linear_model, metrics
 
 digits = datasets.load_digits()
-
 X = digits.data
 y = digits.target
 

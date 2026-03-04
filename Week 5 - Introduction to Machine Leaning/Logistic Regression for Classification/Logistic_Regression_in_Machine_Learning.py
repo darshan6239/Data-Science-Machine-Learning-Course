@@ -10,7 +10,6 @@ Now, let's see the implementation of logistic regression in Python. Here we will
 In binomial logistic regression, the target variable can only have two possible values such as "0" or "1", "pass" or "fail". The sigmoid function is used for prediction.
 
 We will be using sckit-learn library for this and shows how to use the breast cancer dataset to implement a Logistic Regression model for classification."""
-
 from sklearn.datasets import load_breast_cancer
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split

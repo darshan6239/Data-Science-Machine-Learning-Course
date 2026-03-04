@@ -3,7 +3,6 @@
 It is used for binary classification where the output can be one of two possible categories such as Yes/No, True/False or 0/1.
 It uses sigmoid function to convert inputs into a probability value between 0 and 1. """
 
-
 """ Implementation for Logistic Regression
 Now, let's see the implementation of logistic regression in Python. Here we will be implementing two main types of Logistic Regression:
 

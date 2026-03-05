@@ -5,7 +5,6 @@ It uses sigmoid function to convert inputs into a probability value between 0 an
 
 """ Implementation for Logistic Regression
 Now, let's see the implementation of logistic regression in Python. Here we will be implementing two main types of Logistic Regression:
-
 1. Binomial Logistic regression: 
 In binomial logistic regression, the target variable can only have two possible values such as "0" or "1", "pass" or "fail". The sigmoid function is used for prediction.
 We will be using sckit-learn library for this and shows how to use the breast cancer dataset to implement a Logistic Regression model for classification."""

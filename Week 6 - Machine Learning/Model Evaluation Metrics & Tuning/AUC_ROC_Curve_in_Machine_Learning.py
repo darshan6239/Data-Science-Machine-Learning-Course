@@ -1,6 +1,7 @@
 """ AUC-ROC curve is a graph used to check how well a binary classification model works. It helps us to understand how well the model separates the positive cases like people with a disease from the negative cases like people without the disease at different threshold level. It shows how good the model is at telling the difference between the two classes by plotting:
 
     True Positive Rate (TPR): how often the model correctly predicts the positive cases also known as Sensitivity or Recall.
+    
     False Positive Rate (FPR): how often the model incorrectly predicts a negative case as positive.
     Specificity: measures the proportion of actual negatives that the model correctly identifies. It is calculated as 1 - FPR.
 When to Use AUC-ROC

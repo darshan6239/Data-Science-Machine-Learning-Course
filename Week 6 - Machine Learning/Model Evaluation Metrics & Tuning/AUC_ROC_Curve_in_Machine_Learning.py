@@ -3,7 +3,6 @@
     True Positive Rate (TPR): how often the model correctly predicts the positive cases also known as Sensitivity or Recall.
     False Positive Rate (FPR): how often the model incorrectly predicts a negative case as positive.
     Specificity: measures the proportion of actual negatives that the model correctly identifies. It is calculated as 1 - FPR.
-
 When to Use AUC-ROC
 AUC-ROC is effective when:
 

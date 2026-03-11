@@ -23,6 +23,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_curve, auc
 
 #    2. Generating data and splitting data
+
 #    Using an 80-20 split ratio, the algorithm creates artificial binary classification data with 20 features, divides it into training and testing sets and assigns a random seed to ensure reproducibility.
 X, y = make_classification(
     n_samples=1000, n_features=20, n_classes=2, random_state=42)

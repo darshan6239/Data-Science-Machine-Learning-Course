@@ -6,7 +6,6 @@
     Specificity: measures the proportion of actual negatives that the model correctly identifies. It is calculated as 1 - FPR.
 When to Use AUC-ROC
 AUC-ROC is effective when:
-
     The dataset is balanced and the model needs to be evaluated across all thresholds.
     False positives and false negatives are of similar importance. """ 
     

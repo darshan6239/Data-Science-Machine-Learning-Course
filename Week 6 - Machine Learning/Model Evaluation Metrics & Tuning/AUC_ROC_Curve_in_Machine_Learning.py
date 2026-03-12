@@ -8,7 +8,8 @@ When to Use AUC-ROC
 AUC-ROC is effective when:
     The dataset is balanced and the model needs to be evaluated across all thresholds.
     False positives and false negatives are of similar importance. """ 
-    
+
+
 #    Implementation using two different models
 #    1. Installing Libraries
 #    We will be importing numpy, pandas, matplotlib and scikit learn.

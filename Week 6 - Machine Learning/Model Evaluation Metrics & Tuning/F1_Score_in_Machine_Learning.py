@@ -5,7 +5,6 @@
 We can easily calculate the F1 score in Python using the f1_score function from the sklearn.metrics module. This function supports both binary and multi-class classification.
 
 Here's an explanation of the function and its parameters:
-
     1) f1_score function takes two required parameters: y_true and y_pred along with an optional parameter average.
     2) y_true: This parameter represents the true labels for the instances, providing the actual outcomes that the model is trying to predict.
     3) y_pred: This parameter contains the predicted labels from the model indicating the model's output based on the input data.

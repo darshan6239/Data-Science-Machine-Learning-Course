@@ -1,6 +1,5 @@
 """ F1 Score is a performance metric used in machine learning to evaluate how well a classification model performs on a dataset especially when the classes are imbalanced meaning one class appears much more frequently than another. It is the harmonic mean of precision and recall which combine both metrics into a single value that balances their importance. """
 
-
 """ Implementing F1 Score in Python
 We can easily calculate the F1 score in Python using the f1_score function from the sklearn.metrics module. This function supports both binary and multi-class classification.
 

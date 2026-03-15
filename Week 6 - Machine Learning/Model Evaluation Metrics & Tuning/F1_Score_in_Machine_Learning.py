@@ -10,7 +10,6 @@ Here's an explanation of the function and its parameters:
     4) average: This parameter defines the type of averaging performed on the data. It is a optional parameter.""" 
 
 from sklearn.metrics import f1_score
-
 y_true = [0, 1, 2, 2, 2, 2, 1, 0, 2, 1, 0]
 y_pred = [0, 0, 2, 2, 1, 2, 1, 0, 1, 2, 1]
 

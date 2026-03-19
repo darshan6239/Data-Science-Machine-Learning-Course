@@ -1,6 +1,5 @@
 """ Support Vector Machines (SVM) are algorithms for classification and regression tasks. However, the standard (linear) SVM can only classify data that is linearly separable, meaning a straight line can separate the classes (in 2D) or a hyperplane (in higher dimensions). Non-linear SVM extends SVM to handle complex, non-linearly separable data using kernels."""
 
-
 """ Example 1: Non linear SVM in Circular Decision Boundary
 Below is the Python implementation for Non linear SVM in circular decision boundary.
 1. Importing Libraries

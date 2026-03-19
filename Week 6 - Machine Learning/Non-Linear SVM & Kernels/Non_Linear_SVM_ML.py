@@ -12,6 +12,7 @@ from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
+
 """ 2. Creating and Splitting the Dataset
 We generate a synthetic dataset of concentric circles and split it into training and testing sets. """
 X, y = make_circles(n_samples=500, factor=0.5, noise=0.05, random_state=42)

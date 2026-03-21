@@ -106,6 +106,60 @@ for i in range(len(mydata)):
 
 #    10. Splitting Data into Training and Testing Sets
 """  The code splits the data into training and testing sets using a specified ratio. It then trains the model by calculating the mean and standard deviation for each attribute in each class.  """
+ratio = 0.7
+train_data, test_data = splitting(mydata, ratio)
+
+print('Total number of examples:', len(mydata))
+print('Training examples:', len(train_data))
+print('Test examples:', len(test_data))
+
+
+#    11. Training and Testing the Model
+"""    Calculate mean and standard deviation for each attribute within each class for the training set. Finally, it tests the model on the test set and calculates the accuracy.     """
+info = MeanAndStdDevForClass(train_data)
+
+predictions = getPredictions(info, test_data)
+accuracy = accuracy_rate(test_data, predictions)
+print('Accuracy of the model:', accuracy)
+
+#    12. Evaluating Model
+"""    We will plot different types of visualizations for evaluation:
+       1. Confusion Matrix
+       The confusion matrix summarizes prediction results by showing true positives, false positives, true negatives and false negatives. It helps visualize how well the classifier distinguishes between different classes.    """
+from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
+
+y_true = [row[-1] for row in test_data]
+y_pred = predictions
+
+cm = confusion_matrix(y_true, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm)
+disp.plot(cmap='Blues')
+
+#    2. Precision, Recall and F1 score
+"""    The F1 score is the harmonic mean of precision and recall, balancing both metrics into a single value. It’s useful when the class distribution is imbalanced or when false positives and false negatives are costly.    """
+import matplotlib.pyplot as plt
+from sklearn.metrics import precision_score, recall_score, f1_score
+
+actual = [0, 1, 1, 0, 1, 0, 1, 1]
+predicted = [0, 1, 0, 0, 1, 0, 1, 0]
+
+precision = precision_score(actual, predicted)
+recall = recall_score(actual, predicted)
+f1 = f1_score(actual, predicted)
+
+metrics = ['Precision', 'Recall', 'F1 Score']
+values = [precision, recall, f1]
+
+plt.figure(figsize=(6, 4))
+plt.bar(metrics, values, color=['skyblue', 'lightgreen', 'salmon'])
+plt.ylim(0, 1)
+plt.title('Precision, Recall, and F1 Score')
+plt.ylabel('Score')
+for i, v in enumerate(values):
+    plt.text(i, v + 0.02, f"{v:.2f}", ha='center', fontweight='bold')
+    
+plt.show()
+
 
 
 

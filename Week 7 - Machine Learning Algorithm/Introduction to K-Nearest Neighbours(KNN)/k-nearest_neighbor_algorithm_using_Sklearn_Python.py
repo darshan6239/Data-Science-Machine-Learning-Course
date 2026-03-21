@@ -90,3 +90,59 @@ plt.show()
 best_k = k_range[np.argmax(cv_scores)]
 print(f"Best k from cross-validation: {best_k}")
 
+
+#       5. Training with Best k
+"""          The model is trained on the training set with the optimized k (Here k = 6).
+The trained model then predicts labels for the unseen test set to evaluate its real-world performance.        """"
+# Train final model with best k
+best_knn = KNeighborsClassifier(n_neighbors=best_k)
+best_knn.fit(X_train, y_train)
+
+# Predict on test data
+y_pred = best_knn.predict(X_test)
+
+
+#      6. Evaluate Using More Metrics
+"""      1) Calculate the confusion matrix comparing true labels (y_test) with predictions (y_pred).
+      2) Use ConfusionMatrixDisplay to visualize the confusion matrix with labeled classes """
+from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay
+
+# Confusion Matrix
+cm = confusion_matrix(y_test, y_pred)
+disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=["Class 0", "Class 1"])
+disp.plot(cmap="Blues")
+plt.title(f"Confusion Matrix (k={best_k})")
+plt.grid(False)
+plt.show()
+
+# Detailed classification report
+print("Classification Report:")
+print(classification_report(y_test, y_pred, target_names=["Class 0", "Class 1"]))
+
+
+#      7. Visualize Decision Boundary with Best k
+"""      1) Create a 2D mesh grid (xx, yy) covering the feature space.
+         2) Use the trained model (best_knn) to predict class labels for each grid point.
+         3) Reshape predictions to match the grid and plot decision regions using contourf.
+         4) Overlay the original data points using sns.scatterplot to compare true classes with model predictions.      """
+# Create mesh grid
+x_min, x_max = X_scaled[:, 0].min() - 1, X_scaled[:, 0].max() + 1
+y_min, y_max = X_scaled[:, 1].min() - 1, X_scaled[:, 1].max() + 1
+
+xx, yy = np.meshgrid(
+    np.linspace(x_min, x_max, 300),
+    np.linspace(y_min, y_max, 300)
+)
+# Predict on mesh grid with best k
+Z = best_knn.predict(np.c_[xx.ravel(), yy.ravel()])
+Z = Z.reshape(xx.shape)
+
+# Plot decision boundary
+plt.figure(figsize=(8, 6))
+plt.contourf(xx, yy, Z, cmap=plt.cm.coolwarm, alpha=0.3)
+sns.scatterplot(x=X_scaled[:, 0], y=X_scaled[:, 1], hue=y, palette="Set1", edgecolor='k')
+plt.title(f"Decision Boundary with Best k = {best_k}")
+plt.xlabel("Feature 1 (scaled)")
+plt.ylabel("Feature 2 (scaled)")
+plt.grid(True)
+plt.show()

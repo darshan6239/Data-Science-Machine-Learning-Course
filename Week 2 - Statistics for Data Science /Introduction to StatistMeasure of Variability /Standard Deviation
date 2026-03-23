@@ -3,4 +3,5 @@ arr = [1, 2, 3, 4, 5]
 print("Std = ", (statistics.stdev(arr)))
 
 output 
+
 Std =  1.5811388300841898

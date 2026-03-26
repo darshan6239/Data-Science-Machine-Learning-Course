@@ -2,6 +2,7 @@
 
 #    Implementing Random Forest Classification in Python
 """  Before implementing random forest classifier in Python let's first understand it's parameters.
+
 n_estimators: Number of trees in the forest.
 max_depth: Maximum depth of each tree.
 max_features: Number of features considered for splitting at each node.

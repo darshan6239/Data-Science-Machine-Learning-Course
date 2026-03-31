@@ -5,7 +5,6 @@
 Scikit-learn is a popular python library that provides useful tools for hyperparameter tuning that can help improve the performance of Gradient Boosting models. Hyperparameter tuning is the process of selecting the best parameters to maximize the efficiency and accuracy of the model. We'll explore three common techniques: GridSearchCV, RandomizedSearchCV and Optuna.  """
 
 #    We will use Titanic dataset for demonstration.
-
 """  Classification Model without Tuning
 In this implementation, a Gradient Boosting Classifier is applied to the Titanic dataset to predict passenger survival. The process involves data preprocessing, splitting the dataset into training and testing sets, and training the model. To focus on demonstrating the model’s behavior with its default configuration, hyperparameter tuning is not included.  """
 import pandas as pd

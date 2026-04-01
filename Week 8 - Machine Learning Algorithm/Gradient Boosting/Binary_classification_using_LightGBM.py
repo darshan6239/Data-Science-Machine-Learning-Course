@@ -6,6 +6,7 @@ We will implement binary classification using LightGBM:  """
 #    We will install LightGBM for classification tasks.
 pip install lightgbm
 
+
 #    2. Importing Libraries and Dataset
 #    We will import the necessary Python libraries such as pandas, numpy, seaborn, matplotlib, sklearn and load the dataset.
 import pandas as pd

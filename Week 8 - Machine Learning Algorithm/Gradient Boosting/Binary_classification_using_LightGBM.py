@@ -19,6 +19,7 @@ from sklearn.metrics import roc_auc_score
 from lightgbm import LGBMClassifier
 import warnings
 warnings.filterwarnings('ignore')
+
 df = pd.read_csv('/content/diabetes.csv')
 
 #    2.1. Previewing the Dataset

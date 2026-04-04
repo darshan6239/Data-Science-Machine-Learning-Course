@@ -1,6 +1,5 @@
 """    Customer Default Prediction is used by many banks and loan lenders to determine whether a person will be able to return the money they lend them or not. For this we be using AdaBoost which is an ensemble learning technique that combines multiple weak classifiers to create a strong classifier. The algorithm works by iteratively training sequence of classifiers each focusing on correcting the errors made by the previous one by assigning weights to the misclassified instances.  """
 
-
 """  1. Importing Libraries
 We will import NumPy, pandas, seaborn, matplotlib and Scikit learn library in python.  """
 import pandas as pd

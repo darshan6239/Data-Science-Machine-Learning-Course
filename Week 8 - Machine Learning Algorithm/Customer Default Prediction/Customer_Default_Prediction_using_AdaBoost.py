@@ -25,7 +25,6 @@ Categorical columns (like job title, loan intent) are filled with the most commo
 This prevents errors during model training due to missing data.  """
 numerical_cols = df.select_dtypes(include=['float64', 'int64']).columns
 df[numerical_cols] = df[numerical_cols].fillna(df[numerical_cols].mean())
-
 categorical_cols = df.select_dtypes(include=['object']).columns
 for col in categorical_cols:
     df[col] = df[col].fillna(df[col].mode()[0])

@@ -17,7 +17,6 @@ You can download dataset from here.  """
 df = pd.read_csv('/content/LoanDataset---LoansDatasest.csv')
 df.head()
 
-
 """  3. Handling Missing Values
 Here we are handle missing values for numerical columns by filling them with the mean.
 

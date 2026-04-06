@@ -4,7 +4,6 @@ Build a predictive model that can estimate the expected revenue of a movie prior
 Provide insights into which features most influence box office success.
 Compare linear regression performance with more advanced models (e.g., XGBoost) to assess predictive accuracy.  """
 
-
 #    1. Importing Libraries and Dataset
 """  Core Libraries
     Pandas: For loading and exploring the dataset.

@@ -112,3 +112,140 @@ plt.show()
 #    We group the dataset by the 'MPAA' rating category and calculate the mean (average) of the 'domestic_revenue' for each rating group.
 df.groupby('MPAA')['domestic_revenue'].mean()
 
+#    6. Visualizing Distributions of Key Numeric Features
+"""    We plot the distribution (shape) of three important numeric columns to see how their values spread out.
+
+We create three side-by-side plots in one row.
+For each feature (domestic_revenue, opening_theaters, release_days) we show the distribution using Seaborn’s distplot.
+This helps check if the data is normally distributed, skewed or has any unusual patterns.    """
+plt.subplots(figsize=(15, 5))
+
+features = ['domestic_revenue', 'opening_theaters', 'release_days']
+for i, col in enumerate(features):
+    plt.subplot(1, 3, i+1)
+    sb.distplot(df[col])
+plt.tight_layout()
+plt.show()
+
+#        7. Detecting Outliers Using Boxplots
+""""    We use boxplots to visually check for outliers in key numeric features. Boxplots show the spread of data and highlight any outliers (points outside the whiskers).
+
+We create three boxplots side by side, one for each feature (domestic_revenue, opening_theaters, release_days).
+This helps us identify unusual values that might affect the model.    """
+plt.subplots(figsize=(15, 5))
+for i, col in enumerate(features):
+    plt.subplot(1, 3, i+1)
+    sb.boxplot(df[col])
+plt.tight_layout()
+plt.show()
+
+#    8. Applying Log Transformation to Numeric Features
+"""    We apply a log transformation to reduce skewness in our numeric data because log transformation often improves model performance and stability.
+
+We take the base-10 logarithm of each value in the specified columns (domestic_revenue, opening_theaters, release_days).
+This helps make skewed data more normally distributed and reduces the effect of extreme values.    """
+for col in features:
+  df[col] = df[col].apply(lambda x: np.log10(x))
+
+#    8.1 Checking Distributions After Log Transformation
+"    We visualize the distributions of the numeric features again to see the effect of the log transformation.    "
+plt.subplots(figsize=(15, 5))
+for i, col in enumerate(features):
+    plt.subplot(1, 3, i+1)
+    sb.distplot(df[col])
+plt.tight_layout()
+plt.show()
+
+#    9. Converting Movie Genres into Numeric Features
+"""    We transform the text data in the genres column into separate numeric features using one-hot encoding.
+
+We use CountVectorizer to convert each genre like “Action”, “Comedy” into a binary feature i.e 1 if the movie belongs to that genre, else 0.
+Then drop the original genres text column since it’s now represented numerically.    """
+vectorizer = CountVectorizer() 
+vectorizer.fit(df['genres']) 
+features = vectorizer.transform(df['genres']).toarray() 
+
+genres = vectorizer.get_feature_names_out() 
+for i, name in enumerate(genres): 
+	df[name] = features[:, i] 
+
+df.drop('genres', axis=1, inplace=True)
+
+#    9.1 Removing Rare Genre Columns with Mostly Zero Values
+"    We will check for columns between 'action' and 'western' in the DataFrame and drop columns where over 95% of values are zero meaning that genre is rare.    "
+removed = 0
+
+if 'action' in df.columns and 'western' in df.columns:
+    for col in df.loc[:, 'action':'western'].columns: 
+        
+        if (df[col] == 0).mean() > 0.95: 
+            removed += 1
+            df.drop(col, axis=1, inplace=True) 
+
+print(removed) 
+print(df.shape)
+
+#    10. Encoding Categorical Columns into Numbers
+"    We use LabelEncoder to replace each unique category with a number like “PG” to 0, “R” to 1. This is necessary because machine learning models work better with numbers than text labels.    "
+for col in ['distributor', 'MPAA']:
+    le = LabelEncoder()
+    df[col] = le.fit_transform(df[col])
+
+#    11. Visualizing Strong Correlations Between Numeric Features
+""""    As all the categorical features have been labeled encoded let's check if there are highly correlated features in the dataset.
+
+We will calculate the correlation matrix for all numeric columns.
+The plot a heatmap, highlighting pairs of features with correlation greater than 0.8 (very strong correlation).
+This helps us identify redundant features that may need to be removed or handled before modeling.    """
+plt.figure(figsize=(8, 8))
+sb.heatmap(df.select_dtypes(include=np.number).corr() > 0.8, 
+            annot=True, 
+            cbar=False) 
+plt.show()
+
+
+#    12. Preparing Data for Model Training and Validation
+"""    Now we will separate the features and target variables and split them into training and the testing data by using which we will select the model which is performing best on the validation data.
+
+We will remove the title and target column domestic_revenue from the features and set domestic_revenue as the target variable.
+We split the data into 90% training and 10% validation sets to evaluate model performance.    """
+features = df.drop(['title', 'domestic_revenue'], axis=1) 
+target = df['domestic_revenue'].values 
+
+X_train, X_val, Y_train, Y_val = train_test_split(features, target, 
+									test_size=0.1, 
+									random_state=22) 
+X_train.shape, X_val.shape
+
+#    12.1 Normalizing Features for Better Model Training
+"""    We scale the features to have a mean of 0 and a standard deviation of 1, which helps models learn more effectively.
+
+fit_transform learns scaling parameters from training data and applies scaling.
+transform applies the same scaling to validation data without changing the scaler.    
+This standardization helps the model converge faster and improves stability during training.    """
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_val = scaler.transform(X_val)
+
+#    13. Training the XGBoost Regression Model
+"""    XGBoost library models help to achieve state-of-the-art results most of the time so, we will also train this model to get better results.
+
+    We initialize an XGBoost regressor a gradient boosting model.
+    Then train the model on the normalized training data (X_train) and target values (Y_train).    """
+from sklearn.metrics import mean_absolute_error as mae
+model = XGBRegressor()
+model.fit(X_train, Y_train)
+
+
+#    14. Evaluating Model Performance on Training and Validation Sets
+"""    We use Mean Absolute Error (MAE) to check how well the model predicts revenue on both training and validation data.
+
+We predict revenue for the training data and calculate MAE to measure training error.
+Also we predict revenue for the validation data and calculate MAE to measure how well the model generalizes.    """
+train_preds = model.predict(X_train) 
+print('Training Error : ', mae(Y_train, train_preds)) 
+
+val_preds = model.predict(X_val) 
+print('Validation Error : ', mae(Y_val, val_preds)) 
+print()
+

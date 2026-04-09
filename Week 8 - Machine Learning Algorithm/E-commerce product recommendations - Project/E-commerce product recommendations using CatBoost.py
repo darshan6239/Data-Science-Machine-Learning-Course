@@ -94,8 +94,53 @@ print(f'Accuracy: {accuracy:.2f}')
 
 #  Step 7: Visualize Feature Importance
 "  CatBoost provides feature importance which helps understand which features are contributing the most to the predictions. We are doing this too understand why model is getting overfitted.  "
+feature_importance = model.get_feature_importance()
+features = X.columns
+
+importance_df = pd.DataFrame({'Feature': features, 'Importance': feature_importance})
+
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Importance', y='Feature', data=importance_df)
+plt.title('Feature Importance')
+plt.show()
 
 
+#    Step 8: Interactive GUI with ipywidgets
+"""    We'll create an interactive GUI where users can input recency, frequency and monetary values to get a recommendation.
+
+Imports interactive widgets and display tools
+Creates sliders for Recency, Frequency, and Monetary inputs
+Defines output area to show prediction result
+make_prediction() creates a DataFrame and uses model to predict
+Returns "Recommend" if prediction is 1, else "Do not recommend"
+update_prediction() updates output when sliders change
+Observers trigger prediction on slider value changes
+Displays sliders and prediction output in notebook    """
+import ipywidgets as widgets
+from IPython.display import display
+
+recency_input = widgets.IntSlider(min=0, max=365, step=1, description='Recency')
+frequency_input = widgets.IntSlider(min=0, max=100, step=1, description='Frequency')
+monetary_input = widgets.FloatSlider(min=0, max=10000, step=0.01, description='Monetary')
+
+output = widgets.Output()
+
+def make_prediction(recency, frequency, monetary):
+    data = pd.DataFrame({'Recency': [recency], 'Frequency': [frequency], 'Monetary': [monetary]})
+    prediction = model.predict(data)[0]
+    return "Recommend" if prediction == 1 else "Do not recommend"
+
+def update_prediction(change):
+    with output:
+        output.clear_output()
+        prediction = make_prediction(recency_input.value, frequency_input.value, monetary_input.value)
+        print(f'Recommendation: {prediction}')
+
+recency_input.observe(update_prediction, names='value')
+frequency_input.observe(update_prediction, names='value')
+monetary_input.observe(update_prediction, names='value')
+
+display(recency_input, frequency_input, monetary_input, output)
 
 
 

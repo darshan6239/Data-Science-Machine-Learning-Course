@@ -19,11 +19,11 @@ print(dataframe.head())
 #    1. Convert the rate column to a float by removing denominator characters.
 #        dataframe['rate']=dataframe['rate'].apply(handleRate): Applies the handleRate function to clean and convert each rating value in the 'rate' column.
 def handleRate(value):
-    value=str(value).split('/')
-    value=value[0];
-    return float(value)
-
-dataframe['rate']=dataframe['rate'].apply(handleRate)
+    try:
+        value = str(value).split('/')[0]
+        return float(value)
+    except:
+        return None 
 print(dataframe.head())
 
 #      2. Getting summary of the dataframe use df.info().

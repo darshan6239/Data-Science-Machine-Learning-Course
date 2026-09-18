@@ -13,6 +13,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
 
 data = load_iris()
+
 X = pd.DataFrame(data.data, columns=data.feature_names)
 y = pd.Series(data.target)
 

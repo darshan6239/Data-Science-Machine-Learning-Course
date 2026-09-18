@@ -7,6 +7,7 @@
 import pandas as pd
 import sklearn
 
+
 df = pd.read_csv('customer_purchase_behavior.csv')
 
 print(df.head())

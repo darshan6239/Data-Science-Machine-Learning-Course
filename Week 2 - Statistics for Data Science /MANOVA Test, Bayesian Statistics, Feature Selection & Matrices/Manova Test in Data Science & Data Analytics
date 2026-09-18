@@ -10,6 +10,7 @@ from statsmodels.multivariate.manova import MANOVA
 np.random.seed(42)
 num_samples = 150
 
+
 # Independent Features
 X = pd.DataFrame({
     'feature1': np.random.normal(10, 2, num_samples),
